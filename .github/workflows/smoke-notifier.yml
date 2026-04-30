@@ -1,0 +1,23 @@
+name: Smoke test notifier
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run notifier (dry)
+        env:
+          THRESHOLD: critical
+          USAGE_PERCENT: 88
+          REMAINING_EMAILS: 12
+          REMAINING_SMS: 4
+          NOTIFY_CONFIG: .github/brevo-notify.json
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+          BREVO_SENDER_EMAIL: ${{ secrets.BREVO_SENDER_EMAIL }}
+          BREVO_SENDER_NAME: ${{ secrets.BREVO_SENDER_NAME }}
+        run: node send-alert.js

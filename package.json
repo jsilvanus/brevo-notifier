@@ -1,0 +1,11 @@
+{
+  "name": "brevo-notifier",
+  "version": "0.1.0",
+  "description": "Sends Brevo notifications (email/SMS) based on inputs. Separate notifier repo.",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "main": "send-alert.js",
+  "scripts": {
+    "start": "node send-alert.js"
+  }
+}

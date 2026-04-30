@@ -1,0 +1,26 @@
+name: Brevo Notifier
+
+description: Sends notifications via Brevo (email and SMS) based on inputs.
+
+runs:
+  using: 'node16'
+  main: 'send-alert.js'
+
+inputs:
+  threshold:
+    description: 'Threshold name (ok|warning|critical|emergency)'
+    required: true
+  usagePercent:
+    description: 'Computed usage percent'
+    required: false
+  remainingEmails:
+    description: 'Remaining emails'
+    required: false
+  remainingSMS:
+    description: 'Remaining SMS'
+    required: false
+  notify_config:
+    description: 'Path to notifier config file in the caller repo'
+    required: false
+
+*** End Patch
