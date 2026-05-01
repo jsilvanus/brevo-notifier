@@ -1,9 +1,10 @@
 name: Brevo Notifier
 
-description: Sends notifications via Brevo (email and SMS) based on inputs.
+description: |
+  Sends notifications via Brevo (email and SMS) based on inputs.
 
 runs:
-  using: 'node16'
+  using: 'node22'
   main: 'send-alert.js'
 
 inputs:
@@ -22,5 +23,6 @@ inputs:
   notify_config:
     description: 'Path to notifier config file in the caller repo'
     required: false
-
-*** End Patch
+  repository:
+    description: 'Repository name (owner/repo) to include in notifications'
+    required: false

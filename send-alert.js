@@ -66,13 +66,16 @@ async function main() {
     const senderEmail = requireEnv('BREVO_SENDER_EMAIL')
     const senderName = env('BREVO_SENDER_NAME', 'Brevo Alerts')
 
+    const repo = env('REPO') || env('GITHUB_REPOSITORY') || env('INPUT_REPOSITORY') || ''
     const usagePercent = env('USAGE_PERCENT') || env('INPUT_USAGEPERCENT') || ''
     const remainingEmails = env('REMAINING_EMAILS') || env('INPUT_REMAININGEMAILS') || ''
     const remainingSMS = env('REMAINING_SMS') || env('INPUT_REMAININGSMS') || ''
 
-    const subject = `Brevo quota alert: ${threshold} (${usagePercent}%)`
-    const html = `<p>Threshold: ${threshold}</p><ul><li>usagePercent: ${usagePercent}</li><li>remainingEmails: ${remainingEmails}</li><li>remainingSMS: ${remainingSMS}</li></ul>`
-    const smsText = `Brevo alert ${threshold}: usage ${usagePercent}% remainingEmails=${remainingEmails} remainingSMS=${remainingSMS}`
+    const repoDisplay = repo || 'unknown-repo'
+    const repoLink = repo ? `<p>Repo: <a href="https://github.com/${repo}">${repo}</a></p>` : ''
+    const subject = `Brevo quota alert: ${threshold} (${usagePercent}%) [${repoDisplay}]`
+    const html = `<p>Threshold: ${threshold}</p>${repoLink}<ul><li>usagePercent: ${usagePercent}</li><li>remainingEmails: ${remainingEmails}</li><li>remainingSMS: ${remainingSMS}</li></ul>`
+    const smsText = `Brevo alert ${threshold} on ${repoDisplay}: usage ${usagePercent}% remainingEmails=${remainingEmails} remainingSMS=${remainingSMS}`
 
     const channels = Array.isArray(mapping.channels) ? mapping.channels : []
     const recipients = Array.isArray(mapping.recipients) ? mapping.recipients : []

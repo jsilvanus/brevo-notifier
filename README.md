@@ -2,7 +2,7 @@
 
 Small repo that sends Brevo transactional emails and SMS based on a simple configuration mapping.
 
-Usage (CLI)
+## Usage (CLI)
 
 Set required env vars and run:
 
@@ -10,6 +10,7 @@ Set required env vars and run:
 export BREVO_API_KEY=...
 export BREVO_SENDER_EMAIL=alerts@example.com
 export BREVO_SENDER_NAME="My Alerts"
+export INPUT_REPOSITORY="your repo path"
 export THRESHOLD=critical
 export USAGE_PERCENT=87
 export REMAINING_EMAILS=13
@@ -18,7 +19,7 @@ export NOTIFY_CONFIG=.github/brevo-notify.json
 node send-alert.js
 ```
 
-Action usage
+## Action usage
 
 This repo also exposes a simple JS action (`action.yml`) which can be used from other workflows:
 
@@ -37,7 +38,7 @@ This repo also exposes a simple JS action (`action.yml`) which can be used from 
     BREVO_SENDER_NAME: ${{ secrets.BREVO_SENDER_NAME }}
 ```
 
-Configuration
+## Configuration
 
 Create `.github/brevo-notify.json` in the consuming repo. Example:
 
@@ -48,7 +49,12 @@ Create `.github/brevo-notify.json` in the consuming repo. Example:
 }
 ```
 
-Notes
+## Notes
 
-- The action expects Node >=22 for native fetch support.
-- This repo is intentionally focused solely on delivery; keep quota-checking logic in the other repository.
+- This repo is intentionally focused solely on delivery; keep quota-checking logic in the other repository (jsilvanus/brevo-checker)
+
+## Copyright and License
+
+Copyright (c) Juha Itäleino, 2026.
+
+License: MIT
