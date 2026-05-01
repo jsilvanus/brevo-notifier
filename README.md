@@ -25,7 +25,7 @@ This repo also exposes a simple JS action (`action.yml`) which can be used from 
 
 ```yaml
 - name: Notify via Brevo
-  uses: jsilvanus/brevo-notifier@main
+  uses: jsilvanus/brevo-notifier@v1
   with:
     threshold: ${{ steps.check.outputs.thresholdTriggered }}
     usagePercent: ${{ steps.check.outputs.usagePercent }}
